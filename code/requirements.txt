@@ -1,0 +1,9 @@
+jupyter
+matplotlib
+networkx
+numpy
+pandas
+patsy
+seaborn
+sklearn
+statsmodels
