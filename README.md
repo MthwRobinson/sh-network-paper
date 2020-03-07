@@ -24,6 +24,21 @@ pip install -r requirements
 
 ## Data
 
+### GitHub
+
 The GitHub data set that was used for the analysis is included as `github_data.csv`. This is aggregated data that was produced by process raw data collected from the GitHub API. The full data set sourced from GitHub is too large to include in the repo. However, the authors can provide a PostgresSQL dump of the full data set on request.
+
+### Network Plots
+
+Plots depicting the network structure for each stakeholder network in the data set appear in the `network_plots` folder. Building the networks from scratch requires the full Postgres database which, as noted above, is too large to include the repo. However, `pickle` binaries for the stakeholde networks are included in the `network_binaries` folder. You can load and plot a network by running the following commands from the `code` directory.
+
+```
+from stakeholder_network import StakeholderNetwork
+
+network = StakeholderNetwork(organization='alibaba', package='fastjson')
+network.plot_nework()
+```
+
+A `networkx` representation of the stakeholder network is available on the `network` attribute of the `StakeholderNetwork` instance.
 
 
