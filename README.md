@@ -19,7 +19,11 @@ This repo contains data, code and research notebooks that were created in suppor
 The code developed for the analysis is written in Python and requires `python>=3.6`. To install the dependencies for the research code, clone the repo and run the following command:
 
 ```
-cd code && pip install -r requirements
+pip install -r requirements
 ```
+
+## Data
+
+The GitHub data set that was used for the analysis is included as `github_data.csv`. This is aggregated data that was produced by process raw data collected from the GitHub API. The full data set sourced from GitHub is too large to include in the repo. However, the authors can provide a PostgresSQL dump of the full data set on request.
 
 
