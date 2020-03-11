@@ -16,18 +16,28 @@ import scipy.stats as stats
 from database import Database
 
 class StakeholderNetwork:
-    """Builds out the stakeholder network. If overwrite=False, then
-    the class will look for a save version of the stakeholder network
+    """Builds out the stakeholder network. If rebuild=False, then
+    the class will look for a saved version of the stakeholder network
     first. Otherwise, the network information will be pulled from
     the database."""
-    def __init__(self, organization, package, overwrite=False):
+    def __init__(self, organization, package, rebuild=False):
         self.database = Database()
         self.path = os.path.dirname(os.path.realpath(__file__))
         self.image_path = os.path.join(self.path, '../network_plots')
+        self.binary_path = os.path.join(self.path, '../network_binaries')
 
         self.organization = organization
         self.package = package
-        self.network = self.build_network()
+
+        if rebuild:
+            self.network = self.build_network()
+        else:
+            organization = organization.replace(' ', '-')
+            package = package.replace(' ', '-')
+            filename=f'{organization}-{package}.pickle'
+            with open(filename 'rb') as f:
+                self.network = pickle.load(f)
+
         self.gini = self.compute_gini()
         self.avg_min_path = self.compute_avg_min_path()
         self.avg_clustering = self.compute_avg_clustering()
