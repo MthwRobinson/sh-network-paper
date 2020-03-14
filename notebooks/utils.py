@@ -52,8 +52,7 @@ def compute_pca(X, n_components=50):
     topic_matrix = X[topic_columns]
     pca = PCA(n_components=n_components)
     pca_matrix = pca.fit_transform(topic_matrix)
-    columns = [f'pc_{i}' for i in range(pca_matrix.shape[1])]
-    pca_df = pd.DataFrame(data=pca_matrix, columns=columns)
+    pca_df = pd.DataFrame(data = pca_matrix, columns = ['pc_{}'.format(i) for i in range(pca_matrix.shape[1])])
     pca_df['index'] = range(len(pca_df))
     X['index'] = range(len(X))
     final_df = X.merge(pca_df)
