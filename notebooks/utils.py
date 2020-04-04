@@ -90,10 +90,16 @@ def calc_total_effect(all_data, res, X, crowd_pct=None, avg_clustering=None,
     effects_data['avg_min_pathXcrowd_pct'] = effects_data['crowd_pct'] * effects_data['avg_min_path']
     effects_data['gini_coefficientXcrowd_pct'] = effects_data['crowd_pct'] * effects_data['gini_coefficient']
 
+    effects_data['giniXavg_min_path'] = effects_data['gini_coefficient'] * effects_data['avg_min_path']
+    effects_data['giniXclustering'] = effects_data['gini_coefficient'] * effects_data['avg_clustering']
+    effects_data['clusteringXavg_min_path'] = effects_data['avg_clustering'] * effects_data['avg_min_path']
+
+    effects_data['giniXavg_min_pathXcrowd_pct'] = effects_data['gini_coefficient'] * effects_data['avg_min_path'] * effects_data['crowd_pct']
+    effects_data['giniXclusteringXcrowd_pct'] = effects_data['gini_coefficient'] * effects_data['avg_clustering'] * effects_data['crowd_pct']
+    effects_data['clusteringXavg_min_pathXcrowd_pct'] = effects_data['avg_clustering'] * effects_data['avg_min_path'] * effects_data['crowd_pct']
+
     params = {}
-    param_vars = ['crowd_pct', 'crowd_pct_2', 'avg_clusteringXcrowd_pct',
-                  'avg_min_pathXcrowd_pct', 'gini_coefficientXcrowd_pct']
-    for var in param_vars:
+    for var in effects_data:
         params[var] = 0 if var not in res.params else res.params[var]
 
     columns = [x for x in res.params.keys()]
@@ -101,9 +107,13 @@ def calc_total_effect(all_data, res, X, crowd_pct=None, avg_clustering=None,
     predictions = res.predict(pred_data)
 
     crowd_pct_2_effect =  predictions * params['crowd_pct_2']
-    crowd_pct_param = params['crowd_pct'] + (effects_data['avg_clustering'] * params['avg_clusteringXcrowd_pct']
+    crowd_pct_param = params['crowd_pct'] + (
+                       + effects_data['avg_clustering'] * params['avg_clusteringXcrowd_pct']
                        + effects_data['gini_coefficient'] * params['gini_coefficientXcrowd_pct']
-                       + effects_data['avg_min_path'] * params['avg_min_pathXcrowd_pct'])
+                       + effects_data['avg_min_path'] * params['avg_min_pathXcrowd_pct']
+                       + effects_data['giniXavg_min_path'] * params['giniXavg_min_pathXcrowd_pct']
+                       + effects_data['giniXclustering'] * params['giniXclusteringXcrowd_pct']
+                       + effects_data['clusteringXavg_min_path'] * params['clusteringXavg_min_pathXcrowd_pct'])
 
     total_effect = predictions * (2 * params['crowd_pct_2'] * effects_data['crowd_pct'] + crowd_pct_param)
     avg_effect = total_effect.mean()
