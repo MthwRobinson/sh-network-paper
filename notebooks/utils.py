@@ -93,7 +93,7 @@ def calc_total_effect(
 
     effects_data["crowd_pct"] = all_data["crowd_pct"] if not crowd_pct else crowd_pct
     effects_data["crowd_pct_2"] = effects_data["crowd_pct"] ** 2
-    effects_data["crowd_pct_3"] = effects_data["crowd_pct"] ** 2
+    effects_data["crowd_pct_3"] = effects_data["crowd_pct"] ** 3
 
     effects_data["avg_clustering"] = (
         all_data["avg_clustering"] if not avg_clustering else avg_clustering
@@ -160,7 +160,7 @@ def calc_total_effect(
     )
 
     total_effect = predictions * (
-        (3 * (params["crowd_pct_3"]) ** 2) * effects_data["crowd_pct"]
+        3 * params["crowd_pct_3"] * effects_data["crowd_pct_2"]
         + 2 * params["crowd_pct_2"] * effects_data["crowd_pct"]
         + crowd_pct_param
     )
