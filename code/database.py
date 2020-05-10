@@ -9,12 +9,14 @@ import pandas as pd
 import psycopg2
 from psycopg2.extras import execute_values
 
+
 class Database(object):
     """
     Connects to the Postgres database
     Connection settings appear in configuration.py
     Secrets must be stored in a .pgpass file
     """
+
     def __init__(self):
         # Configure the logger
         daiquiri.setup(level=logging.INFO)
@@ -25,11 +27,11 @@ class Database(object):
 
         # Database connection and configurations
         self.columns = {}
-        self.schema = 'open_source'
-        self.database = 'postgres'
-        self.connection = psycopg2.connect(user = 'postgres',
-                                           dbname = 'postgres',
-                                           host = 'localhost')
+        self.schema = "open_source"
+        self.database = "postgres"
+        self.connection = psycopg2.connect(
+            user="postgres", dbname="postgres", host="localhost"
+        )
 
     def run_query(self, sql, commit=True):
         """ Runs a query against the postgres database """
@@ -53,14 +55,16 @@ class Database(object):
 
         # Construct the insert statement
         n = len(item_)
-        row = "(" + ', '.join(['%s' for i in range(n)]) + ")"
-        cols = "(" + ', '.join([x for x in item_]) + ")"
+        row = "(" + ", ".join(["%s" for i in range(n)]) + ")"
+        cols = "(" + ", ".join([x for x in item_]) + ")"
         sql = """
             INSERT INTO {schema}.{table}
             {cols}
             VALUES
             {row}
-        """.format(schema=self.schema, table=table, cols=cols, row=row)
+        """.format(
+            schema=self.schema, table=table, cols=cols, row=row
+        )
 
         # Insert the data
         values = tuple([item_[x] for x in item_])
