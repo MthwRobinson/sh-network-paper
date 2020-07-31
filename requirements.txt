@@ -6,6 +6,6 @@ numpy
 pandas
 patsy
 seaborn
-psycopg2
+psycopg2-binary
 sklearn
 statsmodels
