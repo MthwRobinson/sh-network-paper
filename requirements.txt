@@ -1,3 +1,4 @@
+beautifulsoup4
 daiquiri
 jupyter
 matplotlib
