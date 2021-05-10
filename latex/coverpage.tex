@@ -1,0 +1,70 @@
+%%%%%%%%%%%%%%%%%%%%%%% file template.tex %%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This is a general template file for the LaTeX package SVJour3
+% for Springer journals.          Springer Heidelberg 2010/09/16
+%
+% Copy it to a new file with a new name and use it as the basis
+% for your article. Delete % signs as needed.
+%
+% This template includes a few options for different layouts and
+% content for various journals. Please consult a previous issue of
+% your journal as needed.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{filecontents*}{example.eps}
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 19 19 221 221
+%%CreationDate: Mon Sep 29 1997
+%%Creator: programmed by hand (JK)
+%%EndComments
+gsave
+newpath
+  20 20 moveto
+  20 220 lineto
+  220 220 lineto
+  220 20 lineto
+closepath
+2 setlinewidth
+gsave
+  .4 setgray fill
+grestore
+stroke
+grestore
+\end{filecontents*}
+%
+\RequirePackage{fix-cm}
+%
+\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+\usepackage{graphicx}
+\usepackage{cite}
+\journalname{Requirements Engineering}
+\begin{document}
+
+\title{Network Structure and Requirements Crowdsourcing for OSS Projects}
+\titlerunning{Network Structure and Requirements Crowdsourcing for OSS Projects}
+
+\author{Matthew Robinson (mrobinson23@gwu.edu)
+    Shahram Sarkani (sarkani@gwu.edu) 
+    Thomas Mazzuchi (mazzu@gwu.edu)
+}
+
+% \authorrunning{Robinson, Sarkani, and Mazzuchi} % if too long for running head
+\institute{M. Robinson \at \email{mrobinson23@gwu.edu}}
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+
+\maketitle
+
+\begin{abstract}
+Crowdsourcing system requirements enables project managers to elicit feedback from a broader range of stakeholders. The advantages of crowdsourcing include a higher volume of requirements reflecting a more comprehensive array of use cases and a more engaged and committed user base. Researchers cite the inability of project teams to effectively manage an increasing volume of system requirements as a possible drawback. This paper analyzes a data set consisting of project management artifacts from 562 open source software (OSS) projects to determine how OSS project performance varies as the share of crowdsourced requirements increases using six measures of effectiveness: requirement close-out time, requirement response time, average comment activity, the average number of requirements per crowd member, the average retention time for crowd members, and the total volume of requirements. Additionally, the models measure how the impact of increasing the share of crowdsourced requirements changes with stakeholder network structure. The analysis shows that stakeholder network structure impacts OSS performance outcomes, and that the effect changes with the share of crowdsourced requirements. OSS projects with more concentrated stakeholder networks perform the best. The results indicate that requirements crowdsourcing faces diminishing marginal returns. OSS projects that crowdsource more than 70\% of their requirements benefit more from implementing processes to organize and prioritize existing requirements than from incentivizing the crowd to generate additional requirements. Analysis in the paper also suggests that OSS projects could benefit from employing CrowdRE techniques and assigning dedicated community managers to more effectively channel input from the crowd. 
+
+\keywords{CrowdRE \and Crowdsourcing \and Collaborative Requirements Elicitation \and Stakeholder Networks \and Stakeholder Analysis}
+\end{abstract}
+
+\end{document}
